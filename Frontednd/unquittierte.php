@@ -27,7 +27,7 @@ class MyDB extends SQLite3
   {
      function __construct()
      {
-        $this->open('home/pi/Limmat/Limmat.db');
+        $this->open('/home/pi/Limmat/Limmat.db');
      }
   }
   $db = new MyDB();
