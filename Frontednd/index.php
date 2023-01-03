@@ -24,7 +24,7 @@
             {
                 function __construct()
                 {
-                    $this->open('./db/Limmat.db');
+                    $this->open('home/pi/Limmat/Limmat.db');
                 }
             }
             $db = new MyDB();
