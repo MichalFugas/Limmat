@@ -116,7 +116,7 @@ while True:
 
     k.execute('create table if not exists TT as  SELECT ZL.*, Chaffeure.* FROM ZL, Chaffeure, ConnectionTable  WHERE ConnectionTable.Shift=ZL.Part_1 AND Chaffeure.Name LIKE ConnectionTable.Name;')
     k.execute('SELECT * FROM TT;')
-    table = k.fetchall()
+#    table = k.fetchall()
     tempTableLength = len(k.fetchall())
     print(str(tempTableLength) + ' TT')
     if tempTableLength != ctLength:
