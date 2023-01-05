@@ -60,7 +60,7 @@ def connetionTable():
 
 def audio(nachricht):
     mp3Path = '/home/pi/Limmat/MP3/'
-    alarm_file = (mp3Path+"Alarm.mp3")
+#    alarm_file = (mp3Path+"Alarm.mp3")
     audio_file = (mp3Path+"Message.mp3")
     tts = gTTS(text=nachricht, lang="de")
     tts.save(audio_file)
