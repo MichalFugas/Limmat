@@ -16,6 +16,11 @@ def log(logText):
     f = open("/home/pi/Limmat/log.txt", "a")
     f.write(str(datetime.datetime.now())[:19]+' -----> '+str(logText)+'\n')
     f.close()
+    
+def driver_log(logText):
+    f = open("/home/pi/Limmat/driver_log.txt", "a")
+    f.write(str(datetime.datetime.now())[:19]+' -----> '+str(logText)+'\n')
+    f.close()
 
 
 def connetionTable():
@@ -121,13 +126,13 @@ while True:
     print(str(tempTableLength) + ' TT')
     if tempTableLength != ctLength:
         print('ERROR')
-
-    ctPPL = k.execute('SELECT Name FROM ConnectionTable;')
-    ctPPL = k.fetchall()
-    ttPPL = k.execute('SELECT Name FROM TT;')
-    ttPPL = k.fetchall()
-    res = [x for x in ctPPL + ttPPL if x not in ctPPL or x not in ttPPL]
-    print(res)
+        ctPPL = k.execute('SELECT Name FROM ConnectionTable;')
+        ctPPL = k.fetchall()
+        ttPPL = k.execute('SELECT Name FROM TT;')
+        ttPPL = k.fetchall()
+        res = [x for x in ctPPL + ttPPL if x not in ctPPL or x not in ttPPL]
+        print(res)
+        driver_log(res)
 
     k.close()
     conn.close()
