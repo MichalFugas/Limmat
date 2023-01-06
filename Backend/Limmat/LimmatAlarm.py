@@ -83,15 +83,11 @@ def connetionTable():
 
 def audio(nachricht):
     mp3Path = '/home/pi/Limmat/MP3/'
-#    alarm_file = (mp3Path+"Alarm.mp3")
     audio_file = (mp3Path+"Message.mp3")
     tts = gTTS(text=nachricht, lang="de")
     tts.save(audio_file)
-    subprocess.call(["mpg123", "-q", alarm_file])
     time.sleep(0.5)
     subprocess.call(["mpg123", "-q", audio_file])
-    # subprocess.call(["afplay", alarm_file])
-    # subprocess.call(["afplay", audio_file])
 
 
 
