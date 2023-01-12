@@ -93,6 +93,26 @@ EOF;
                     }
                 }
             }
+            elseif ($q_dienst==300) {
+
+                $sql =<<<EOF
+    UPDATE TT SET Checkbox_part_1="1" WHERE Part_1='$q_dienst';
+EOF;
+                $ret = $db->exec($sql);
+                if(!$ret) {
+                    echo $db->lastErrorMsg();
+                } else {
+//                    echo $db->changes(), " Record updated successfully ";
+                    $zapytanie = $db->query("SELECT Name FROM TT WHERE Part_1='$q_dienst'");
+                    $chauffeur = $zapytanie->fetchArray();
+                    if($q_dienst !=null){
+                        echo "<SCRIPT>
+                            var message = '$chauffeur[0], Gute Fahrt';
+                            openBoxx(message);
+                        </SCRIPT>";
+                    }
+                }
+            }
             elseif ($q_dienst<=399) {
                 $sql =<<<EOF
     UPDATE TT SET Checkbox_part_3="1" WHERE Part_3='$q_dienst';
@@ -112,6 +132,25 @@ EOF;
                     }
                 }
             }
+            elseif ($q_dienst==400) {
+
+              $q = $db->query("SELECT * FROM TT WHERE Part_1='$q_dienst'");
+              $q_driver = $q->fetchArray();
+              if($q_driver[4] == NULL){
+                $sql = $db->query("UPDATE TT SET Checkbox_part_1='1' WHERE Part_1='$q_dienst'");
+                echo "<SCRIPT>
+                            var message = '$q_driver[17], Gute Fahrt';
+                            openBoxx(message);
+                        </SCRIPT>";
+              }else{
+                $sql = $db->query("UPDATE TT SET Checkbox_part_2='1' WHERE Part_1='$q_dienst'");
+                echo "<SCRIPT>
+                            var message = '$q_driver[17], Gute Fahrt';
+                            openBoxx(message);
+                        </SCRIPT>";
+              }
+            }
+
             elseif ($q_dienst==920) {
                 $sql =<<<EOF
     UPDATE TT SET Checkbox_part_1="1" WHERE Part_1='$q_dienst';
@@ -175,8 +214,6 @@ EOF;
                     openBoxx('Bitte richtige Nummer eingeben');
                 </SCRIPT>";
             }
-
-
             ?></p></div>
 </header>
 
@@ -197,7 +234,7 @@ EOF;
             <div class="button">
                 <button class="unquittierte" onclick="openWin(),setTimeout(closeWin, 5000) ">Unquittierte (F2)</button>
 
-                
+
             </div>
 
         <script>
@@ -238,12 +275,6 @@ EOF;
     }
 
   </script>
-
-
-
-
-
-
         <script>
           var myWindow;
 
